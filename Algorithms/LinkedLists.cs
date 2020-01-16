@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace Algorithms
 {
@@ -21,6 +19,10 @@ namespace Algorithms
 
     public class LinkedLists
     {
+        /// <summary>
+        /// Removes duplicates from linked list
+        /// </summary>
+        /// <param name="head"></param>
         public static void RemoveDuplicates(Node head)
         {
             var table = new Dictionary<int, bool>();
@@ -46,7 +48,12 @@ namespace Algorithms
 
         }
 
-        // Get kth element till end
+        /// <summary>
+        /// Get Kth element from linked list
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="k"></param>
+        /// <returns> List of nodes </returns>
         public static List<Node> GetKthElement(Node head, int k)
         {
             if (head == null || k == 0)
@@ -69,8 +76,7 @@ namespace Algorithms
             return NodeList;
         }
 
-        // Get kth element till end - Recursive
-        internal class Result
+        private class Result
         {
             public Node Node { get; set; }
             public int Count { get; set; }
@@ -82,6 +88,12 @@ namespace Algorithms
             }
         }
 
+        /// <summary>
+        /// Get Kth element from linked list - recursively
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
         private static Result GetKthElementRecursiveHelper(Node head, int k)
         {
             if (head == null)
@@ -109,7 +121,11 @@ namespace Algorithms
             return result.Node;
         }
 
-        // Delete middle node
+        /// <summary>
+        /// Deletes middle node ( node between first and last )
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns> true if deleted, false otherwise </returns>
         public static bool DeleteMiddleNode(Node node)
         {
             if (node?.Next == null)
@@ -122,7 +138,12 @@ namespace Algorithms
             return true;
         }
 
-        // Partition
+        /// <summary>
+        /// Partitions linked list around specific node
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="x"></param>
+        /// <returns> Node </returns>
         public static Node PartitionAroundX(Node head, int x)
         {
             if (head == null || x == 0)
@@ -177,7 +198,12 @@ namespace Algorithms
             return leftPart;
         }
 
-        // Sum linked lists #1
+        /// <summary>
+        /// Sum linked lists version #1
+        /// </summary>
+        /// <param name="firstNumber"></param>
+        /// <param name="secondNumber"></param>
+        /// <returns> Node </returns>
         public static Node SumLists(Node firstNumber, Node secondNumber)
         {
             var first = 0;
@@ -215,7 +241,13 @@ namespace Algorithms
             return resultHead;
         }
 
-        // Sum linked lists #2
+        /// <summary>
+        /// Sum linked lists, version #2
+        /// </summary>
+        /// <param name="firstNumber"></param>
+        /// <param name="secondNumber"></param>
+        /// <param name="carry"></param>
+        /// <returns> Node </returns>
         public static Node SumLists2(Node firstNumber, Node secondNumber, int carry)
         {
             if (firstNumber == null && secondNumber == null && carry == 0)
@@ -240,7 +272,11 @@ namespace Algorithms
             return sumNode;
         }
 
-        // Check if linked list is palindrome
+        /// <summary>
+        /// Is linked list palindrome. Reverting list and then comparing
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns> Node </returns>
         private static Node ReverseAndCloneLinkedList(Node head)
         {
             // we could also add counter so that in 
@@ -291,7 +327,7 @@ namespace Algorithms
         /// Is linked list palindrome using Stack and Fast / slow runner technique
         /// </summary>
         /// <param name="head"></param>
-        /// <returns></returns>
+        /// <returns> true if list is palindrome, false otherwise </returns>
         public static bool IsLinkedListPalindromeStack(Node head)
         {
             var stack = new Stack<int>();
