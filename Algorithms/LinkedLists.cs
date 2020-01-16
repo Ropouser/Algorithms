@@ -239,5 +239,85 @@ namespace Algorithms
 
             return sumNode;
         }
+
+        // Check if linked list is palindrome
+        private static Node ReverseAndCloneLinkedList(Node head)
+        {
+            // we could also add counter so that in 
+            // IsLinkedListPalindrome we check just to the middle not 
+            // till the end
+
+            Node node = null;
+            
+            // 1 -> 2 -> 3
+            // null <- 1 <- 2 <- 3 
+
+            while(head != null)
+            {
+                // 1
+                Node n = new Node(head.Data);
+
+                // null <- 1
+                n.Next = node;
+
+                // node is now on 1
+                node = n;
+
+                // shift right
+                head = head.Next;
+            }
+
+            // return last added node, it is reverted
+            return node;
+        }
+
+        public static bool IsLinkedListPalindrome(Node head)
+        {
+            var reverseList = ReverseAndCloneLinkedList(head);
+
+            while(head != null && reverseList != null)
+            {
+                if (head.Data != reverseList.Data)
+                    return false;
+
+                head = head.Next;
+                reverseList = reverseList.Next;
+            }
+
+            return head == null && reverseList == null;
+        }
+
+        /// <summary>
+        /// Is linked list palindrome using Stack and Fast / slow runner technique
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public static bool IsLinkedListPalindromeStack(Node head)
+        {
+            var stack = new Stack<int>();
+
+            Node fastRunner = head;
+            Node slowRunner = head;
+
+            while(fastRunner != null && fastRunner.Next != null)
+            {
+                stack.Push(slowRunner.Data);
+                slowRunner = slowRunner.Next;
+                fastRunner = fastRunner.Next.Next;
+            }
+
+            if (fastRunner.Next == null)
+                slowRunner = slowRunner.Next;
+
+            while (slowRunner != null)
+            {
+                if (stack.Pop() != slowRunner.Data)
+                    return false;
+
+                slowRunner = slowRunner.Next;
+            }
+
+            return true;
+        }
     }
 }
