@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Algorithms.Trees_and_Graphs;
 
 namespace Algorithms
 {
@@ -50,6 +51,21 @@ namespace Algorithms
             sum2.Next = sum3;
 
             var nesto = LinkedLists.SumLists2(sumFirst, sum1, 0);
+
+            var graph = new Graph<int>();
+
+            var graphNode1 = new GraphNode<int>(1);
+            var graphNode2 = new GraphNode<int>(2);
+            var graphNode3 = new GraphNode<int>(3);
+            var graphNode4 = new GraphNode<int>(4);
+
+            graphNode1.Children.Add(graphNode2);
+            graphNode2.Children.Add(graphNode3);
+            graphNode1.Children.Add(graphNode4);
+
+            graph.Nodes.AddRange(new List<GraphNode<int>> {graphNode1, graphNode2, graphNode3, graphNode4});
+
+            TreesAndGraphs.RouteBetweenNodesExists(graph, graphNode1, graphNode4);
 
             Console.ReadKey();
         }
